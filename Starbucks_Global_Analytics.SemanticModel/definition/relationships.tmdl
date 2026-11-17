@@ -1,0 +1,59 @@
+relationship rel_sales_date
+	fromColumn: Fact_Sales.DateKey
+	toColumn: Dim_Date.DateKey
+
+relationship rel_inventory_date
+	fromColumn: Fact_Inventory.MonthDateKey
+	toColumn: Dim_Date.DateKey
+
+relationship rel_labor_date
+	fromColumn: Fact_Labor.MonthDateKey
+	toColumn: Dim_Date.DateKey
+
+relationship rel_marketing_date
+	fromColumn: Fact_Marketing.MonthDateKey
+	toColumn: Dim_Date.DateKey
+
+relationship rel_date_year
+	fromColumn: Dim_Date.Year
+	toColumn: Dim_Year.Year
+
+relationship rel_financials_year
+	fromColumn: Fact_Financials.'Fiscal year'
+	toColumn: Dim_Year.Year
+
+relationship rel_sales_store
+	fromColumn: Fact_Sales.StoreID
+	toColumn: Dim_Store.StoreID
+
+relationship rel_inventory_store
+	fromColumn: Fact_Inventory.StoreID
+	toColumn: Dim_Store.StoreID
+
+relationship rel_labor_store
+	fromColumn: Fact_Labor.StoreID
+	toColumn: Dim_Store.StoreID
+
+relationship rel_store_region
+	fromColumn: Dim_Store.RegionID
+	toColumn: Dim_Region.RegionID
+
+relationship rel_marketing_region
+	fromColumn: Fact_Marketing.RegionID
+	toColumn: Dim_Region.RegionID
+
+relationship rel_sales_product
+	fromColumn: Fact_Sales.ProductID
+	toColumn: Dim_Product.ProductID
+
+relationship rel_product_category
+	fromColumn: Dim_Product.Category
+	toColumn: Dim_Category.Category
+
+relationship rel_inventory_category
+	fromColumn: Fact_Inventory.Category
+	toColumn: Dim_Category.Category
+
+relationship rel_sales_customer
+	fromColumn: Fact_Sales.CustomerID
+	toColumn: Dim_Customer.CustomerID

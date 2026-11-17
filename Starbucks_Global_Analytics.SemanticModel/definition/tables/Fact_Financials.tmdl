@@ -1,0 +1,257 @@
+table Fact_Financials
+	lineageTag: ee7911ff-5901-025e-9d7d-3460536fe509
+
+	measure Revenue = SUM ( Fact_Financials[Total revenue] )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 54358a91-4f51-e1af-19df-8520159fe607
+
+	measure 'Revenue latest' = VAR y = MAX ( Dim_Year[Year] ) RETURN CALCULATE ( [Revenue], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 7821273b-670c-eed3-afba-940464ec456f
+
+	measure 'Revenue PY' = VAR y = MAX ( Dim_Year[Year] ) RETURN CALCULATE ( [Revenue], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y - 1 ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: c37fdbbd-0a7b-36a5-6364-63e350d5bccb
+
+	measure 'Revenue YoY' = DIVIDE ( [Revenue latest] - [Revenue PY], [Revenue PY] )
+		formatString: +0.0%;-0.0%;"—"
+		displayFolder: 02 Growth
+		lineageTag: 59fea424-047b-7040-ad63-f88ef8a46dc0
+
+	measure 'Revenue delta label' = VAR d = [Revenue YoY] RETURN IF ( ISBLANK ( d ), "", IF ( d >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( d ), "0.0%" ) & " vs prior FY" )
+		formatString: @
+		displayFolder: 02 Growth
+		lineageTag: 8146b723-ce70-8222-4392-df3a9768bdee
+
+	measure 'Operating income' = SUM ( Fact_Financials[Operating income amount] )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 9307a774-7c3f-bba3-d635-44f4a8cafbcd
+
+	measure 'Operating income latest' = VAR y = MAX ( Dim_Year[Year] ) RETURN CALCULATE ( [Operating income], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 4cefe852-9cb3-82db-3135-5bc140bac6cb
+
+	measure 'Operating income PY' = VAR y = MAX ( Dim_Year[Year] ) RETURN CALCULATE ( [Operating income], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y - 1 ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: b49f7e8b-fa9f-4224-3750-fd5cf4d8670d
+
+	measure 'Operating income YoY' = DIVIDE ( [Operating income latest] - [Operating income PY], [Operating income PY] )
+		formatString: +0.0%;-0.0%;"—"
+		displayFolder: 02 Growth
+		lineageTag: a8d8181a-87da-549a-9461-bcee239aba9d
+
+	measure 'Operating income delta label' = VAR d = [Operating income YoY] RETURN IF ( ISBLANK ( d ), "", IF ( d >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( d ), "0.0%" ) & " vs prior FY" )
+		formatString: @
+		displayFolder: 02 Growth
+		lineageTag: 2a27c326-2c76-00b3-4a0c-422167d73889
+
+	measure 'Net earnings' = SUM ( Fact_Financials[Net earnings amount] )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 61f3b113-0c7a-20be-797e-b467fa2698cc
+
+	measure 'Net earnings latest reported' = VAR y = MAX ( Dim_Year[Year] ) VAR ly = CALCULATE ( MAX ( Fact_Financials[Fiscal year] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] <= y, Fact_Financials[Net earnings amount] <> 0 ) RETURN CALCULATE ( SUM ( Fact_Financials[Net earnings amount] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = ly ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 0417a904-351d-c686-b0f4-bdf39c0ebe5c
+
+	measure 'Net earnings prior reported' = VAR y = MAX ( Dim_Year[Year] ) VAR ly = CALCULATE ( MAX ( Fact_Financials[Fiscal year] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] <= y, Fact_Financials[Net earnings amount] <> 0 ) VAR py = CALCULATE ( MAX ( Fact_Financials[Fiscal year] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] < ly, Fact_Financials[Net earnings amount] <> 0 ) RETURN CALCULATE ( SUM ( Fact_Financials[Net earnings amount] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = py ) + 0
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 012600b0-db08-73a1-2d17-7051babebf59
+
+	measure 'Net earnings YoY' = DIVIDE ( [Net earnings latest reported] - [Net earnings prior reported], [Net earnings prior reported] )
+		formatString: +0.0%;-0.0%;"—"
+		displayFolder: 02 Growth
+		lineageTag: c66f727d-4cb0-d322-cf12-8e29ec0a0952
+
+	measure 'Net earnings delta label' = VAR d = [Net earnings YoY] RETURN IF ( ISBLANK ( d ), "", IF ( d >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( d ), "0.0%" ) & " vs prior report" )
+		formatString: @
+		displayFolder: 02 Growth
+		lineageTag: 8f8dc335-1fff-8e75-9cb0-65cab906efeb
+
+	measure 'Operating margin' = DIVIDE ( [Operating income], [Revenue] )
+		formatString: 0.0%
+		displayFolder: 01 Reported financials
+		lineageTag: db47dc4e-2e91-203b-c361-0f1f501867dd
+
+	measure 'Operating margin latest' = DIVIDE ( [Operating income latest], [Revenue latest] )
+		formatString: 0.0%
+		displayFolder: 01 Reported financials
+		lineageTag: 4035295d-a1d3-cb65-241e-b2ff519f3602
+
+	measure 'Operating margin PY' = DIVIDE ( [Operating income PY], [Revenue PY] )
+		formatString: 0.0%
+		displayFolder: 01 Reported financials
+		lineageTag: a8f6c62c-6e6f-3032-5428-0c697abe18da
+
+	measure 'Operating margin delta' = ( [Operating margin latest] - [Operating margin PY] ) * 100
+		formatString: +0.0"pp";-0.0"pp";"flat"
+		displayFolder: 02 Growth
+		lineageTag: 3b36e62c-b8b1-750a-8483-cb8bae60a892
+
+	measure 'Operating margin delta label' = VAR d = [Operating margin delta] RETURN IF ( ISBLANK ( d ), "", IF ( d >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( d ), "0.0" ) & " pp vs prior FY" )
+		formatString: @
+		displayFolder: 02 Growth
+		lineageTag: 31753883-45f6-bec6-cec5-e16b22c8718f
+
+	measure 'Company-operated revenue' = SUM ( Fact_Financials[Company-operated revenue amount] )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: b3cd61cf-6576-6b95-8f84-fe80530ff60b
+
+	measure 'Licensed revenue' = SUM ( Fact_Financials[Licensed revenue amount] )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: e6ecbc6b-7698-2faa-a8a8-c1cf0d2879ed
+
+	measure 'Licensed share latest' = DIVIDE ( CALCULATE ( [Licensed revenue], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = MAX ( Dim_Year[Year] ) ), [Revenue latest] )
+		formatString: 0.0%
+		displayFolder: 01 Reported financials
+		lineageTag: 60abc367-c6d9-a78b-ac53-61a65477542a
+
+	measure 'Revenue (B)' = DIVIDE ( SUM ( Fact_Financials[Total revenue] ), 1000 )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 5e3ade63-50c9-23d4-9334-2f75c422519d
+
+	measure 'Operating income (B)' = DIVIDE ( SUM ( Fact_Financials[Operating income amount] ), 1000 )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: cec02520-d0cd-1ce1-b6cb-fd2a67d2441d
+
+	measure 'Net earnings (B)' = DIVIDE ( SUM ( Fact_Financials[Net earnings amount] ), 1000 )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: b7d6c2ee-3e27-cbaa-6994-71ff1736822e
+
+	measure 'Company-operated revenue (B)' = DIVIDE ( SUM ( Fact_Financials[Company-operated revenue amount] ), 1000 )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 2210999f-36a8-d3cc-89f2-331bb9efd8aa
+
+	measure 'Licensed revenue (B)' = DIVIDE ( SUM ( Fact_Financials[Licensed revenue amount] ), 1000 )
+		formatString: $#,0.0B
+		displayFolder: 01 Reported financials
+		lineageTag: 54578196-c1a5-c547-25fd-ee50b807fc87
+
+	measure 'Revenue CAGR' = VAR a = CALCULATE ( SUM ( Fact_Financials[Total revenue] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = 2021 ) VAR b = CALCULATE ( SUM ( Fact_Financials[Total revenue] ), REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = 2026 ) RETURN IF ( a > 0, ( DIVIDE ( b, a ) ) ^ ( 1 / 5 ) - 1 )
+		formatString: 0.0%
+		displayFolder: 02 Growth
+		lineageTag: 89a295f8-9fd2-f1b8-5ee5-22e0081ef633
+
+	measure 'Allocated revenue (B)' = VAR y = MAX ( Dim_Year[Year] ) VAR rev = CALCULATE ( [Revenue], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y ) VAR s = CALCULATE ( [Net sales], REMOVEFILTERS ( Dim_Year ), REMOVEFILTERS ( Dim_Date ), Dim_Date[Year] = y ) VAR t = CALCULATE ( [Net sales], REMOVEFILTERS ( Dim_Year ), REMOVEFILTERS ( Dim_Date ), REMOVEFILTERS ( Dim_Store ), REMOVEFILTERS ( Dim_Region ), Dim_Date[Year] = y ) RETURN DIVIDE ( rev * DIVIDE ( s, t ), 1000 ) + 0
+		formatString: $#,0.0B
+		displayFolder: 04 Geographic
+		lineageTag: 2ed8a10f-669d-e1d0-2426-d32038ebefd5
+
+	measure 'Allocated revenue PY (B)' = VAR y = MAX ( Dim_Year[Year] ) VAR rev = CALCULATE ( [Revenue], REMOVEFILTERS ( Dim_Year ), Fact_Financials[Fiscal year] = y - 1 ) VAR s = CALCULATE ( [Net sales], REMOVEFILTERS ( Dim_Year ), REMOVEFILTERS ( Dim_Date ), Dim_Date[Year] = y - 1 ) VAR t = CALCULATE ( [Net sales], REMOVEFILTERS ( Dim_Year ), REMOVEFILTERS ( Dim_Date ), REMOVEFILTERS ( Dim_Store ), REMOVEFILTERS ( Dim_Region ), Dim_Date[Year] = y - 1 ) RETURN DIVIDE ( rev * DIVIDE ( s, t ), 1000 ) + 0
+		formatString: $#,0.0B
+		displayFolder: 04 Geographic
+		lineageTag: 2c5f90ed-b592-8127-32d0-9f19c7ae8374
+
+	measure 'Allocated revenue YoY' = DIVIDE ( [Allocated revenue (B)] - [Allocated revenue PY (B)], [Allocated revenue PY (B)] )
+		formatString: +0.0%;-0.0%;"—"
+		displayFolder: 04 Geographic
+		lineageTag: e03cbcaf-d6c6-fc9a-be7c-c363a4461f5d
+
+	measure 'Allocated revenue share' = DIVIDE ( [Allocated revenue (B)], CALCULATE ( [Allocated revenue (B)], REMOVEFILTERS ( Dim_Region ) ) )
+		formatString: 0.0%
+		displayFolder: 04 Geographic
+		lineageTag: 820ab7da-ed12-eeb9-7a48-4999cea0fb9c
+
+	measure 'Revenue text' = FORMAT ( DIVIDE ( [Revenue latest], 1000 ), "$#,0.0""B""" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: 90abcfd7-7fd4-a150-adb3-6dda39eac3ee
+
+	measure 'Operating income text' = FORMAT ( DIVIDE ( [Operating income latest], 1000 ), "$#,0.0""B""" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: 759b8bb1-f898-67ac-0911-b5d490d07fba
+
+	measure 'Net earnings text' = FORMAT ( DIVIDE ( [Net earnings latest reported], 1000 ), "$#,0.0""B""" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: 00bdf6b3-ff30-515b-6f6c-210f443d3a22
+
+	measure 'Operating margin text' = FORMAT ( [Operating margin latest], "0.0%" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: ce539e4e-5e12-6abb-5c13-7b7cb85edcca
+
+	measure 'Revenue CAGR text' = FORMAT ( [Revenue CAGR], "0.0%" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: fe62c51d-df2b-145e-6142-5975e9ca1e5f
+
+	measure 'Licensed share text' = FORMAT ( [Licensed share latest], "0.0%" )
+		formatString: @
+		displayFolder: 09 Display
+		lineageTag: 7976920c-9032-14f3-7545-18d1949a5ad7
+
+	column 'Fiscal year'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		lineageTag: 85595885-2830-c3f1-a1d3-ae3b92d53f5c
+		sourceColumn: [Fiscal year]
+
+	column 'Fiscal year end'
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: f123413d-2f87-64e8-a925-bea0c01f28b1
+		sourceColumn: [Fiscal year end]
+
+	column 'Total revenue'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: 7f2ce66e-7f87-7fd0-688f-a7266d6c2e29
+		sourceColumn: [Total revenue]
+
+	column 'Operating income amount'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: a294a725-e3e6-2145-304a-9504eddf7d34
+		sourceColumn: [Operating income]
+
+	column 'Net earnings amount'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: ee6419af-dc17-5e81-eebc-e2c63eb41763
+		sourceColumn: [Net earnings]
+
+	column 'Company-operated revenue amount'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: 11022d0b-10e8-9b45-d9cf-5c5c7d4f8648
+		sourceColumn: [Company-operated revenue]
+
+	column 'Licensed revenue amount'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: 750f2132-e898-466f-3be1-534d84f646ab
+		sourceColumn: [Licensed revenue]
+
+	column 'Other revenue'
+		dataType: double
+		formatString: $#,0.0B
+		summarizeBy: none
+		lineageTag: c1c9b7a7-5627-901b-af66-c7f339537533
+		sourceColumn: [Other revenue]
+
+	partition Fact_Financials = calculated
+		mode: import
+		source = DATATABLE ( "Fiscal year", INTEGER, "Fiscal year end", STRING, "Total revenue", DOUBLE, "Operating income", DOUBLE, "Net earnings", DOUBLE, "Company-operated revenue", DOUBLE, "Licensed revenue", DOUBLE, "Other revenue", DOUBLE, { {2021, "2021-10-03", 29060.6, 4872.1, 4199.3, 24607, 2683.6, 1770}, {2022, "2022-10-02", 32250.3, 4617.8, 3281.6, 26576.1, 3655.5, 2018.7}, {2023, "2023-10-01", 35975.6, 5870.8, 4124.5, 29462.3, 4512.7, 2000.6}, {2024, "2024-09-29", 36176.2, 5408.8, 3760.9, 29765.9, 4505.1, 1905.2}, {2025, "2025-09-28", 37184.4, 2936.6, 1856.4, 30744.8, 4350.4, 2089.2}, {2026, "2026-09-27", 37910.6, 3691.1, 0, 30940.2, 4615.8, 2354.6} } )

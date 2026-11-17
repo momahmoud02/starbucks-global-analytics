@@ -1,0 +1,51 @@
+table Dim_Product
+	lineageTag: f8025786-1c94-294c-b113-f5910be876d9
+
+	measure Products = DISTINCTCOUNT ( Dim_Product[ProductID] )
+		formatString: #,0
+		displayFolder: 03 Footprint
+		lineageTag: 068f80c7-519d-0528-fb08-e82137a72131
+
+	column ProductID
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 67fbe939-2104-667b-4828-7b5bf9ef04c4
+		sourceColumn: [ProductID]
+
+	column Product
+		dataType: string
+		summarizeBy: none
+		lineageTag: 2aa69c38-eae9-8623-88f7-23e594daab1a
+		sourceColumn: [Product]
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		lineageTag: 0bf736c3-7579-72a2-cddd-e186ae5e8d5b
+		sourceColumn: [Category]
+
+	column 'Product group'
+		dataType: string
+		summarizeBy: none
+		lineageTag: 16e4546b-dde1-c19d-9579-769698cf03e3
+		sourceColumn: [Product group]
+
+	column 'List price'
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		lineageTag: 7524e8bb-7c5e-8441-b626-dbe75d2be52c
+		sourceColumn: [List price]
+
+	column 'Unit cost'
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		isHidden
+		lineageTag: eff73e9d-25b7-927c-5442-6b84c3858c41
+		sourceColumn: [Unit cost]
+
+	partition Dim_Product = calculated
+		mode: import
+		source = DATATABLE ( "ProductID", STRING, "Product", STRING, "Category", STRING, "Product group", STRING, "List price", DOUBLE, "Unit cost", DOUBLE, { {"P001", "Pike Place Roast", "Brewed Coffee", "Coffee", 3.25, 0.82}, {"P002", "Caffè Americano", "Espresso", "Coffee", 3.75, 0.91}, {"P003", "Caffè Latte", "Espresso", "Coffee", 5.25, 1.42}, {"P004", "Cappuccino", "Espresso", "Coffee", 5.1, 1.35}, {"P005", "Cold Brew", "Cold Coffee", "Coffee", 5.45, 1.48}, {"P006", "Vanilla Sweet Cream Cold Brew", "Cold Coffee", "Coffee", 6.1, 1.72}, {"P007", "Caramel Frappuccino", "Frappuccino", "Blended", 6.25, 1.9}, {"P008", "Mocha Frappuccino", "Frappuccino", "Blended", 6.25, 1.88}, {"P009", "Matcha Tea Latte", "Tea", "Tea", 5.75, 1.55}, {"P010", "Chai Tea Latte", "Tea", "Tea", 5.35, 1.42}, {"P011", "Butter Croissant", "Bakery", "Food", 3.95, 1.25}, {"P012", "Blueberry Muffin", "Bakery", "Food", 4.25, 1.32}, {"P013", "Banana Bread", "Bakery", "Food", 4.1, 1.28}, {"P014", "Bacon & Gouda Sandwich", "Breakfast", "Food", 6.75, 2.55}, {"P015", "Spinach Feta Wrap", "Breakfast", "Food", 6.45, 2.3}, {"P016", "Turkey Pesto Sandwich", "Lunch", "Food", 8.25, 3.25}, {"P017", "Chicken Caprese Sandwich", "Lunch", "Food", 8.5, 3.4}, {"P018", "Reusable Cold Cup", "Merchandise", "Merchandise", 18, 8.2}, {"P019", "Ceramic Mug", "Merchandise", "Merchandise", 16, 7.1}, {"P020", "Espresso Roast Beans", "Coffee Beans", "At Home", 15.95, 7.2}, {"P021", "Pike Place Beans", "Coffee Beans", "At Home", 14.95, 6.8}, {"P022", "Pumpkin Spice Latte", "Seasonal", "Seasonal", 6.25, 1.72}, {"P023", "Peppermint Mocha", "Seasonal", "Seasonal", 6.45, 1.8}, {"P024", "Ethos Bottled Water", "Water", "Other", 3.25, 1.05} } )

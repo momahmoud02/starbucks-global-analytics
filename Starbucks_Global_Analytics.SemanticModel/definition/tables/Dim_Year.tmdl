@@ -1,0 +1,135 @@
+table Dim_Year
+	lineageTag: 61c940a1-9e1c-54a4-ba7b-83509efe6965
+
+	measure 'About · Revenue Trend' = "Reported total revenue for each fiscal year, plotted in USD billions. Revenue reached $37.9B in FY2026 — +2.0% YoY and a 5.5% CAGR since FY2021, with every year higher than the last."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 921a8706-7a8e-aa76-288e-2968e098a69e
+
+	measure 'About · Global Revenue by Region' = "FY2026 revenue allocated to market hubs and plotted on the globe. Six regions split $37.9B within one percentage point of each other; China leads at 17.3%."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 4ff03740-a730-e96f-75a1-ed513009c986
+
+	measure 'About · Sales by Channel' = "Share of sample net sales by ordering channel. All four channels carry a meaningful share — no single channel dominates net sales."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: e9f4e573-4e46-1503-64a7-533b9906f67d
+
+	measure 'About · Top 5 Products' = "Top five products ranked by net sales, with cup icons sized to the value. Reusable Cold Cup leads at $40.8K ahead of Ceramic Mug at $35.6K — merchandise outranks drinks."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 7aaea073-23a4-4bf7-a279-b0c35f9a3158
+
+	measure 'About · Revenue & Operating Income' = "Revenue and operating income side by side for FY2021–FY2026, in USD billions. Operating income rebounded to $3.7B in FY2026 (+25.7%) after dipping to $2.9B in FY2025."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: cea9fc81-dbe7-fc64-2cf4-71a504a1fe65
+
+	measure 'About · Operating Margin' = "Operating income as a percentage of revenue for each fiscal year. Margin bottomed at 7.9% in FY2025 and climbed back to 9.7% in FY2026."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 321d3764-901c-a346-661b-4f23c7778402
+
+	measure 'About · Revenue Mix' = "Company-operated versus licensed revenue across the six years, in USD billions. Company-operated stores generate 81.6% of revenue; licensed locations add 12.2%."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 7121b441-d41f-3f8b-db2e-cb7d1dfc9d90
+
+	measure 'About · Performance Matrix' = "Revenue, operating income, net earnings, margin and YoY growth by fiscal year. Six-year revenue grew 30.5% (+$8.9B) while net earnings eased to $1.9B in FY2025."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: ff7ffec5-94b3-5b76-c294-713969598ab5
+
+	measure 'About · Monthly Net Sales' = "Monthly net sales across the 60-store sample from January 2021 to December 2026. Net sales build steadily across the window, with recurring seasonal peaks each year."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 62b32882-7dfd-a17c-358f-694339da5129
+
+	measure 'About · Channel Mix' = "Share of net sales by ordering channel across all sample stores. Channel revenue is broad-based: in-store and mobile order lead, delivery and drive-thru complete the mix."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 7860b2a3-63c2-da45-c034-bca66d843341
+
+	measure 'About · Sales by Category' = "Net sales by product category across all years, ranked largest first. Beverages lead at $76.4K, followed by food — together they anchor the category mix."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 50777d99-6508-0585-1c7a-e18c2f06e415
+
+	measure 'About · Top 5 Products (Sales)' = "Top five products ranked by net sales in the sample. Reusable Cold Cup ($40.8K) tops the list; the top five span merchandise, drinks and food."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 2d556be0-f861-3169-f74c-66f72a6de4d0
+
+	measure 'About · Weekday Performance' = "Orders placed on each day of the week. Use the weekday split to match staffing and promotions to the busiest days."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 8a73516d-3eff-70a5-827b-28145f9f9845
+
+	measure 'About · Inventory Value Trend' = "Month-end inventory at cost across the sample, in USD. Inventory stands at $603.5K with 3.5 months of supply and 22.3% sell-through."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: ab1888f4-53f3-a765-5736-f1fc69574a2f
+
+	measure 'About · Waste by Category' = "Units wasted per category, ranked largest first. Waste runs at 4.3% of units sold, led by bakery and espresso — the clearest efficiency lever."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 413b9f0a-db60-baf8-c3b2-086790dc48b7
+
+	measure 'About · Store Inventory Health' = "Per-store sell-through, waste rate, months of supply and stockout rate. Stockouts hit only 0.1% of store-category months — availability is not the constraint; waste is."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 8b15787e-678d-2408-c483-9532c05454ef
+
+	measure 'About · Labor Cost Trend' = "Monthly labor cost across all sample stores. Labor cost totals $65.1M across 3.3M hours — $19.47 per actual hour."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: c15464ca-7294-d813-b87f-a5cba7b88317
+
+	measure 'About · Overtime vs Absence' = "Overtime and absence hours by fiscal year. Overtime is 2.9% of hours and absence 1.5%, so scheduling is stable."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: 2fc96fd2-9ef8-325c-86fb-364ab297a19d
+
+	measure 'About · Marketing Spend by Channel' = "Share of marketing spend by campaign channel. $27.6M of spend; digital ads deliver the lowest CPA at $6.26."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: e59b44e0-5f6f-31dc-ed1d-2d1575ab79e9
+
+	measure 'About · Campaign Performance' = "Top campaigns ranked by spend with CTR, CPA and attributed orders. 4.0M attributed orders at a blended $6.92 CPA."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: a52a06c0-b930-197f-5e6a-17a46f72ed9c
+
+	measure 'About · Global Revenue Globe' = "FY2026 revenue allocated to six reporting regions, plotted by market hub. All six regions land between $6.2B and $6.6B — a deliberately balanced footprint."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: da411e92-7c74-6313-c0bc-c3f9a723b1ad
+
+	measure 'About · Revenue by Region' = "Allocated FY2026 revenue per region, ranked largest first. China leads at $6.6B (17.3% share) and the full spread is under one percentage point."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: c3f9b56a-f0ff-03f3-fb83-4812be42428f
+
+	measure 'About · Region Scorecard' = "Revenue, YoY growth and revenue share for each region. China (+6.3%) and Europe (+5.5%) led growth; North America softened 6.5%."
+		formatString: @
+		displayFolder: 09 Chart help
+		lineageTag: b3e5255f-74f3-a61b-10b8-2f12bd56fa08
+
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		lineageTag: c42a0ed5-68a8-624a-3262-5a7bea8c2598
+		sourceColumn: [Year]
+
+	column FY
+		dataType: string
+		summarizeBy: none
+		lineageTag: 80ad5bb6-feab-105e-4582-daaa1d7a22c5
+		sourceColumn: [FY]
+		sortByColumn: Year
+
+	partition Dim_Year = calculated
+		mode: import
+		source = DATATABLE ( "Year", INTEGER, "FY", STRING, { {2021, "FY2021"}, {2022, "FY2022"}, {2023, "FY2023"}, {2024, "FY2024"}, {2025, "FY2025"}, {2026, "FY2026"} } )

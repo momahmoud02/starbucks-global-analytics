@@ -1,0 +1,56 @@
+table Dim_Region
+	lineageTag: 7baedcbd-0cd3-1344-0e8c-8d67580f18c1
+
+	column RegionID
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 72735451-c9d4-0ecf-ab7c-23984b49c90e
+		sourceColumn: [RegionID]
+
+	column Region
+		dataType: string
+		summarizeBy: none
+		lineageTag: 1c2a3477-c543-3724-0f2d-ee78ce10d38f
+		sourceColumn: [Region]
+		sortByColumn: 'Region sort'
+
+	column Country
+		dataType: string
+		summarizeBy: none
+		lineageTag: 75053293-b749-e1e7-120c-b587cc317cce
+		sourceColumn: [Country]
+
+	column Currency
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 0da94bda-022b-7044-cabe-5107db82d4d8
+		sourceColumn: [Currency]
+
+	column Latitude
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		isHidden
+		lineageTag: 846c2167-7128-e217-70dc-0304db2f4b76
+		sourceColumn: [Latitude]
+
+	column Longitude
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		isHidden
+		lineageTag: 07c90779-4f9e-7882-af50-86e5347e7491
+		sourceColumn: [Longitude]
+
+	column 'Region sort'
+		dataType: int64
+		summarizeBy: none
+		isHidden
+		lineageTag: 6c058fb7-874e-75ec-8f2c-93958ceeed8f
+		sourceColumn: [Region sort]
+
+	partition Dim_Region = calculated
+		mode: import
+		source = DATATABLE ( "RegionID", STRING, "Region", STRING, "Country", STRING, "Currency", STRING, "Latitude", DOUBLE, "Longitude", DOUBLE, "Region sort", INTEGER, { {"NA", "North America", "United States", "USD", 37.0902, -95.7129, 1}, {"EU", "Europe", "United Kingdom", "GBP", 54.526, 15.2551, 2}, {"CN", "China", "China", "CNY", 35.8617, 104.1954, 3}, {"JP", "Japan", "Japan", "JPY", 36.2048, 138.2529, 4}, {"ME", "Middle East", "United Arab Emirates", "AED", 23.4241, 53.8478, 5}, {"LATAM", "Latin America", "Mexico", "MXN", 23.6345, -102.5528, 6} } )

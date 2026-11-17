@@ -1,0 +1,29 @@
+{
+ "version": "1.0.0.0",
+ "author": {
+  "name": "Starbucks Global Analytics",
+  "email": "support@example.com"
+ },
+ "resources": [
+  {
+   "resourceId": "rId0",
+   "sourceType": 5,
+   "file": "resources/starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039.pbiviz.json"
+  }
+ ],
+ "visual": {
+  "name": "starbucksCups",
+  "displayName": "Starbucks Cup Ranking",
+  "guid": "starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039",
+  "visualClassName": "Visual",
+  "version": "1.0.0.0",
+  "description": "Animated top-products ranking with illustrated Starbucks cup icons, bars and values.",
+  "supportUrl": "https://learn.microsoft.com/power-bi/developer/visuals/",
+  "gitHubUrl": ""
+ },
+ "metadata": {
+  "pbivizjson": {
+   "resourceId": "rId0"
+  }
+ }
+}

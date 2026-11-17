@@ -1,0 +1,79 @@
+table Dim_Store
+	lineageTag: ae0c3a76-e795-1dcf-9630-4c63e00f452e
+
+	measure Stores = DISTINCTCOUNT ( Dim_Store[StoreID] )
+		formatString: #,0
+		displayFolder: 03 Footprint
+		lineageTag: 821b8ee6-937c-ec96-c30f-dafbfe836d68
+
+	measure 'Company-operated stores' = CALCULATE ( [Stores], Dim_Store[Store type] = "Company-operated" )
+		formatString: #,0
+		displayFolder: 03 Footprint
+		lineageTag: 12638417-f17a-e3ee-87dd-9bd40ebd183d
+
+	measure 'Licensed stores' = CALCULATE ( [Stores], Dim_Store[Store type] = "Licensed" )
+		formatString: #,0
+		displayFolder: 03 Footprint
+		lineageTag: 41c80313-7206-2689-44a1-87d2fe92e68e
+
+	column StoreID
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 3d2770a8-3fa7-12c9-8686-f619866c1572
+		sourceColumn: [StoreID]
+
+	column Store
+		dataType: string
+		summarizeBy: none
+		lineageTag: fb9d688e-84a3-a0e1-c055-d8ccd4fd4d24
+		sourceColumn: [Store]
+
+	column RegionID
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 72735451-c9d4-0ecf-ab7c-23984b49c90e
+		sourceColumn: [RegionID]
+
+	column Country
+		dataType: string
+		summarizeBy: none
+		lineageTag: 75053293-b749-e1e7-120c-b587cc317cce
+		sourceColumn: [Country]
+
+	column City
+		dataType: string
+		summarizeBy: none
+		lineageTag: bc2e0f69-9deb-3846-d308-5b14b3c30782
+		sourceColumn: [City]
+
+	column 'Store type'
+		dataType: string
+		summarizeBy: none
+		lineageTag: d7d0e45c-200a-b627-0baf-5ad2e50dcc70
+		sourceColumn: [Store type]
+
+	column 'Store format'
+		dataType: string
+		summarizeBy: none
+		lineageTag: ec2d8ae9-620a-eed6-c84c-4df0cc9faa9d
+		sourceColumn: [Store format]
+
+	column 'Opening year'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		lineageTag: c2c7f3ad-89d9-0db7-1daa-1c3570c1a6db
+		sourceColumn: [Opening year]
+
+	column Currency
+		dataType: string
+		summarizeBy: none
+		isHidden
+		lineageTag: 0da94bda-022b-7044-cabe-5107db82d4d8
+		sourceColumn: [Currency]
+
+	partition Dim_Store = calculated
+		mode: import
+		source = DATATABLE ( "StoreID", STRING, "Store", STRING, "RegionID", STRING, "Country", STRING, "City", STRING, "Store type", STRING, "Store format", STRING, "Opening year", INTEGER, "Currency", STRING, { {"ST001", "Starbucks Seattle 01", "NA", "United States", "Chicago", "Company-operated", "High Street", 2017, "USD"}, {"ST002", "Starbucks London 02", "EU", "United Kingdom", "Manchester", "Licensed", "Mall", 2023, "GBP"}, {"ST003", "Starbucks Shanghai 03", "CN", "China", "Beijing", "Company-operated", "Mall", 2022, "CNY"}, {"ST004", "Starbucks Tokyo 04", "JP", "Japan", "Tokyo", "Company-operated", "Flagship", 2020, "JPY"}, {"ST005", "Starbucks Dubai 05", "ME", "United Arab Emirates", "Doha", "Company-operated", "Flagship", 2020, "AED"}, {"ST006", "Starbucks Mexico City 06", "LATAM", "Mexico", "Bogota", "Licensed", "High Street", 2024, "MXN"}, {"ST007", "Starbucks New York 07", "NA", "United States", "Chicago", "Company-operated", "High Street", 2017, "USD"}, {"ST008", "Starbucks Manchester 08", "EU", "United Kingdom", "Madrid", "Company-operated", "Mall", 2022, "GBP"}, {"ST009", "Starbucks Beijing 09", "CN", "China", "Hangzhou", "Company-operated", "Flagship", 2018, "CNY"}, {"ST010", "Starbucks Osaka 10", "JP", "Japan", "Kyoto", "Company-operated", "Flagship", 2017, "JPY"}, {"ST011", "Starbucks Abu Dhabi 11", "ME", "United Arab Emirates", "Abu Dhabi", "Licensed", "Mall", 2021, "AED"}, {"ST012", "Starbucks Monterrey 12", "LATAM", "Mexico", "Mexico City", "Licensed", "Flagship", 2025, "MXN"}, {"ST013", "Starbucks Los Angeles 13", "NA", "United States", "Chicago", "Licensed", "High Street", 2023, "USD"}, {"ST014", "Starbucks Paris 14", "EU", "United Kingdom", "Paris", "Company-operated", "Transit", 2023, "GBP"}, {"ST015", "Starbucks Shenzhen 15", "CN", "China", "Beijing", "Licensed", "Drive-Thru", 2022, "CNY"}, {"ST016", "Starbucks Kyoto 16", "JP", "Japan", "Tokyo", "Company-operated", "Mall", 2023, "JPY"}, {"ST017", "Starbucks Riyadh 17", "ME", "United Arab Emirates", "Doha", "Licensed", "High Street", 2021, "AED"}, {"ST018", "Starbucks Bogota 18", "LATAM", "Mexico", "Bogota", "Company-operated", "Transit", 2018, "MXN"}, {"ST019", "Starbucks Chicago 19", "NA", "United States", "Chicago", "Company-operated", "Drive-Thru", 2023, "USD"}, {"ST020", "Starbucks Berlin 20", "EU", "United Kingdom", "London", "Licensed", "Flagship", 2020, "GBP"}, {"ST021", "Starbucks Hangzhou 21", "CN", "China", "Hangzhou", "Licensed", "High Street", 2021, "CNY"}, {"ST022", "Starbucks Yokohama 22", "JP", "Japan", "Kyoto", "Licensed", "Flagship", 2020, "JPY"}, {"ST023", "Starbucks Doha 23", "ME", "United Arab Emirates", "Abu Dhabi", "Company-operated", "Transit", 2018, "AED"}, {"ST024", "Starbucks Sao Paulo 24", "LATAM", "Mexico", "Mexico City", "Company-operated", "Flagship", 2024, "MXN"}, {"ST025", "Starbucks Austin 25", "NA", "United States", "Chicago", "Licensed", "Flagship", 2023, "USD"}, {"ST026", "Starbucks Madrid 26", "EU", "United Kingdom", "Berlin", "Licensed", "Flagship", 2022, "GBP"}, {"ST027", "Starbucks Shanghai 27", "CN", "China", "Beijing", "Company-operated", "High Street", 2020, "CNY"}, {"ST028", "Starbucks Tokyo 28", "JP", "Japan", "Tokyo", "Company-operated", "Mall", 2023, "JPY"}, {"ST029", "Starbucks Dubai 29", "ME", "United Arab Emirates", "Doha", "Licensed", "High Street", 2021, "AED"}, {"ST030", "Starbucks Mexico City 30", "LATAM", "Mexico", "Bogota", "Company-operated", "High Street", 2020, "MXN"}, {"ST031", "Starbucks Boston 31", "NA", "United States", "Chicago", "Licensed", "Drive-Thru", 2020, "USD"}, {"ST032", "Starbucks London 32", "EU", "United Kingdom", "Manchester", "Licensed", "Drive-Thru", 2018, "GBP"}, {"ST033", "Starbucks Beijing 33", "CN", "China", "Hangzhou", "Company-operated", "Drive-Thru", 2017, "CNY"}, {"ST034", "Starbucks Osaka 34", "JP", "Japan", "Kyoto", "Licensed", "Mall", 2021, "JPY"}, {"ST035", "Starbucks Abu Dhabi 35", "ME", "United Arab Emirates", "Abu Dhabi", "Licensed", "High Street", 2024, "AED"}, {"ST036", "Starbucks Monterrey 36", "LATAM", "Mexico", "Mexico City", "Company-operated", "Flagship", 2017, "MXN"}, {"ST037", "Starbucks Seattle 37", "NA", "United States", "Chicago", "Company-operated", "Mall", 2024, "USD"}, {"ST038", "Starbucks Manchester 38", "EU", "United Kingdom", "Madrid", "Licensed", "Transit", 2023, "GBP"}, {"ST039", "Starbucks Shenzhen 39", "CN", "China", "Beijing", "Licensed", "Flagship", 2019, "CNY"}, {"ST040", "Starbucks Kyoto 40", "JP", "Japan", "Tokyo", "Company-operated", "Drive-Thru", 2022, "JPY"}, {"ST041", "Starbucks Riyadh 41", "ME", "United Arab Emirates", "Doha", "Company-operated", "Mall", 2018, "AED"}, {"ST042", "Starbucks Bogota 42", "LATAM", "Mexico", "Bogota", "Company-operated", "Drive-Thru", 2023, "MXN"}, {"ST043", "Starbucks New York 43", "NA", "United States", "Chicago", "Licensed", "Drive-Thru", 2022, "USD"}, {"ST044", "Starbucks Paris 44", "EU", "United Kingdom", "Paris", "Company-operated", "Mall", 2019, "GBP"}, {"ST045", "Starbucks Hangzhou 45", "CN", "China", "Hangzhou", "Licensed", "Mall", 2017, "CNY"}, {"ST046", "Starbucks Yokohama 46", "JP", "Japan", "Kyoto", "Licensed", "Transit", 2024, "JPY"}, {"ST047", "Starbucks Doha 47", "ME", "United Arab Emirates", "Abu Dhabi", "Licensed", "Mall", 2020, "AED"}, {"ST048", "Starbucks Sao Paulo 48", "LATAM", "Mexico", "Mexico City", "Licensed", "Mall", 2024, "MXN"}, {"ST049", "Starbucks Los Angeles 49", "NA", "United States", "Chicago", "Company-operated", "Flagship", 2022, "USD"}, {"ST050", "Starbucks Berlin 50", "EU", "United Kingdom", "London", "Licensed", "Flagship", 2023, "GBP"}, {"ST051", "Starbucks Shanghai 51", "CN", "China", "Beijing", "Licensed", "Flagship", 2023, "CNY"}, {"ST052", "Starbucks Tokyo 52", "JP", "Japan", "Tokyo", "Licensed", "Drive-Thru", 2018, "JPY"}, {"ST053", "Starbucks Dubai 53", "ME", "United Arab Emirates", "Doha", "Company-operated", "Mall", 2019, "AED"}, {"ST054", "Starbucks Mexico City 54", "LATAM", "Mexico", "Bogota", "Licensed", "High Street", 2020, "MXN"}, {"ST055", "Starbucks Chicago 55", "NA", "United States", "Chicago", "Company-operated", "High Street", 2021, "USD"}, {"ST056", "Starbucks Madrid 56", "EU", "United Kingdom", "Berlin", "Company-operated", "Mall", 2017, "GBP"}, {"ST057", "Starbucks Beijing 57", "CN", "China", "Hangzhou", "Licensed", "Flagship", 2021, "CNY"}, {"ST058", "Starbucks Osaka 58", "JP", "Japan", "Kyoto", "Company-operated", "Transit", 2018, "JPY"}, {"ST059", "Starbucks Abu Dhabi 59", "ME", "United Arab Emirates", "Abu Dhabi", "Licensed", "Flagship", 2023, "AED"}, {"ST060", "Starbucks Monterrey 60", "LATAM", "Mexico", "Mexico City", "Licensed", "Flagship", 2022, "MXN"} } )

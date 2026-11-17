@@ -1,0 +1,283 @@
+{
+  "name": "Starbucks Light",
+  "dataColors": [
+    "#1E8E6B",
+    "#C9A227",
+    "#0F5C47",
+    "#A9714B",
+    "#E2CE96",
+    "#2FA37C",
+    "#8C6D1F",
+    "#A8C3B5"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#20352C",
+  "tableAccent": "#1E8E6B",
+  "good": "#2FA37C",
+  "neutral": "#C9A227",
+  "bad": "#B85C4E",
+  "maximum": "#0F5C47",
+  "center": "#C9A227",
+  "minimum": "#E9F3ED",
+  "textClasses": {
+    "callout": {
+      "color": "#0C3B2E",
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28
+    },
+    "title": {
+      "color": "#0C3B2E",
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 14
+    },
+    "header": {
+      "color": "#7C8F85",
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11
+    },
+    "label": {
+      "color": "#20352C",
+      "fontFace": "Segoe UI",
+      "fontSize": 11
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "labels": [
+          {
+            "show": false,
+            "fontSize": 9.5
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#7C8F85"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#8D9D95"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#EFE9DC"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#5C6F66"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "clusteredColumnChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#7C8F85"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#8D9D95"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#EFE9DC"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#5C6F66"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "fontSize": 9.5,
+            "color": {
+              "solid": {
+                "color": "#20352C"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#3E5149"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "show": false,
+            "fontSize": 9.5
+          }
+        ],
+        "legend": [
+          {
+            "show": false,
+            "fontSize": 9.5
+          }
+        ],
+        "labels": [
+          {
+            "fontSize": 9.5,
+            "color": {
+              "solid": {
+                "color": "#20352C"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "donutChart": {
+      "*": {
+        "legend": [
+          {
+            "fontSize": 9.5,
+            "labelColor": {
+              "solid": {
+                "color": "#3E5149"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "fontSize": 9.5,
+            "color": {
+              "solid": {
+                "color": "#20352C"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [
+          {
+            "rowPadding": 5,
+            "columnPadding": 6
+          }
+        ],
+        "columnHeaders": [
+          {
+            "fontSize": 10,
+            "bold": true,
+            "fontColor": {
+              "solid": {
+                "color": "#7C8F85"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontSize": 11.5,
+            "fontColor": {
+              "solid": {
+                "color": "#20352C"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "fontSize": 11,
+            "fontColor": {
+              "solid": {
+                "color": "#20352C"
+              }
+            }
+          }
+        ],
+        "selection": [
+          {
+            "selectedColor": {
+              "solid": {
+                "color": "#1E8E6B"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

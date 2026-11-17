@@ -1,0 +1,85 @@
+table Dim_Date
+	lineageTag: fc54dc67-dc6b-8957-a1ef-a6722424c68d
+
+	column Date
+		dataType: dateTime
+		summarizeBy: none
+		lineageTag: c82b6471-6ac4-717b-5dbd-6253a776afa3
+		sourceColumn: [Date]
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isHidden
+		lineageTag: 8cba3f38-bb64-5a67-7330-a0a86370f44e
+		sourceColumn: [DateKey]
+
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		lineageTag: c42a0ed5-68a8-624a-3262-5a7bea8c2598
+		sourceColumn: [Year]
+
+	column Quarter
+		dataType: string
+		summarizeBy: none
+		lineageTag: dd132b6e-ccc4-84cf-de19-fd3547d4c0d5
+		sourceColumn: [Quarter]
+
+	column MonthNo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isHidden
+		lineageTag: c10260a2-47b1-3407-ad6e-5926179bd7e8
+		sourceColumn: [MonthNo]
+
+	column Month
+		dataType: string
+		summarizeBy: none
+		lineageTag: 215c8835-a524-8f89-f7af-e8d65995374d
+		sourceColumn: [Month]
+		sortByColumn: MonthNo
+
+	column YearMonth
+		dataType: string
+		summarizeBy: none
+		lineageTag: eeb913f4-a9fa-a2c9-930c-43aa39f2aef5
+		sourceColumn: [YearMonth]
+
+	column Day
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isHidden
+		lineageTag: 437f72e6-22a6-731e-9f9a-38702006df9b
+		sourceColumn: [Day]
+
+	column DayName
+		dataType: string
+		summarizeBy: none
+		lineageTag: 9b9ce60e-5f8d-ba14-f8b2-84700e4aa30f
+		sourceColumn: [DayName]
+		sortByColumn: DayOfWeek
+
+	column DayOfWeek
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isHidden
+		lineageTag: b38c39bd-a071-a80a-4c20-8d1e9e30c032
+		sourceColumn: [DayOfWeek]
+
+	column 'Is Weekend'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isHidden
+		lineageTag: 186852c9-6491-09cf-1bce-8d1e86243dc9
+		sourceColumn: [Is Weekend]
+
+	partition Dim_Date = calculated
+		mode: import
+		source = ADDCOLUMNS ( CALENDAR ( DATE ( 2021, 1, 1 ), DATE ( 2026, 12, 31 ) ), "DateKey", YEAR ( [Date] ) * 10000 + MONTH ( [Date] ) * 100 + DAY ( [Date] ), "Year", YEAR ( [Date] ), "Quarter", "Q" & QUARTER ( [Date] ), "MonthNo", MONTH ( [Date] ), "Month", FORMAT ( [Date], "MMMM" ), "YearMonth", FORMAT ( [Date], "yyyy-MM" ), "Day", DAY ( [Date] ), "DayName", FORMAT ( [Date], "dddd" ), "DayOfWeek", WEEKDAY ( [Date], 2 ), "Is Weekend", IF ( WEEKDAY ( [Date], 2 ) >= 6, 1, 0 ) )

@@ -1,0 +1,16 @@
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Office temporary files
+~$*
+*.tmp
+*.pbix~
+
+# Power BI local cache and autosave folders
+.pbi/
+**/.pbi/
+*.pbicache
+cache.abf
+Starbucks Global Analytics.pbip~*

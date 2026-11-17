@@ -1,0 +1,34 @@
+table Dim_Category
+	lineageTag: 3643519f-70b5-9957-1c0c-c85a78d637d6
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		lineageTag: 0bf736c3-7579-72a2-cddd-e186ae5e8d5b
+		sourceColumn: [Category]
+		sortByColumn: 'Category sort'
+
+	column 'Product group'
+		dataType: string
+		summarizeBy: none
+		lineageTag: 16e4546b-dde1-c19d-9579-769698cf03e3
+		sourceColumn: [Product group]
+		sortByColumn: 'Group sort'
+
+	column 'Category sort'
+		dataType: int64
+		summarizeBy: none
+		isHidden
+		lineageTag: 670f13da-b9d9-13b1-4ff0-b1600a4d1cdd
+		sourceColumn: [Category sort]
+
+	column 'Group sort'
+		dataType: int64
+		summarizeBy: none
+		isHidden
+		lineageTag: f8025623-9bf7-8db7-05f5-00b040b50e2b
+		sourceColumn: [Group sort]
+
+	partition Dim_Category = calculated
+		mode: import
+		source = DATATABLE ( "Category", STRING, "Product group", STRING, "Category sort", INTEGER, "Group sort", INTEGER, { {"Brewed Coffee", "Coffee", 1, 1}, {"Espresso", "Coffee", 2, 1}, {"Cold Coffee", "Coffee", 3, 1}, {"Frappuccino", "Blended", 4, 2}, {"Tea", "Tea", 5, 3}, {"Bakery", "Food", 6, 4}, {"Breakfast", "Food", 7, 4}, {"Lunch", "Food", 8, 4}, {"Coffee Beans", "At Home", 9, 5}, {"Merchandise", "Merchandise", 10, 6}, {"Seasonal", "Seasonal", 11, 7}, {"Water", "Other", 12, 8} } )

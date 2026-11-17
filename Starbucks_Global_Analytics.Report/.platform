@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Starbucks Global Analytics Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6b1e7c94-2f83-4a5d-9c07-d8e1f4a2b639"
+  }
+}

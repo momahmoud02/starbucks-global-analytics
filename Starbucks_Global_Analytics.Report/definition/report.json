@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU10",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "StarbucksLight.json",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "filterConfig": {
+    "filters": []
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU10",
+          "path": "BaseThemes/Fluent2-CY26SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "StarbucksLight.json",
+          "path": "StarbucksLight.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "bg-home.png",
+          "path": "bg-home.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-overview.png",
+          "path": "bg-overview.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-financial.png",
+          "path": "bg-financial.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-sales.png",
+          "path": "bg-sales.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-inventory.png",
+          "path": "bg-inventory.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-workforce.png",
+          "path": "bg-workforce.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg-global.png",
+          "path": "bg-global.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "starbucksGlobe9C4D21E7A6B8450F93E2C5D8B7A16430",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "starbucksGlobe9C4D21E7A6B8450F93E2C5D8B7A16430.pbiviz.json",
+          "path": "resources/starbucksGlobe9C4D21E7A6B8450F93E2C5D8B7A16430.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039.pbiviz.json",
+          "path": "resources/starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "publicCustomVisuals": [
+    "starbucksGlobe9C4D21E7A6B8450F93E2C5D8B7A16430",
+    "starbucksCups5D8E31F7B2A64C0E9F7D2B4A8C1E6039"
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}
